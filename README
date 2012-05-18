@@ -1,0 +1,25 @@
+S3Upload
+
+Simple java application to upload a large datafile into s3 using multi-part upload 
+and multiple threads.
+
+Uses the example code from:
+http://docs.amazonwebservices.com/AmazonS3/latest/dev/HLTrackProgressMPUJava.html
+
+TOBUILD:
+
+1. create a file with your aws credentials (access key id and secret key)
+   ./src/main/resources/AwsCredentials.properties
+
+   (see the file ./src/main/resources/AwsCredentials.properties.template )
+
+2. use maven to build the package
+   % mvn package
+
+   the jar will be in ./target/s3upload-1.0-SNAPSHOT.one-jar.jar
+
+3. run java 
+   % java -jar ./target/s3upload-1.0-SNAPSHOT.one-jar.jar <s3-path> <local-file> <numthreads> <multi-part block size>
+
+NOTES:
+   this is just example code.  not meant for production. no warrantee, nothing.  just examples.
