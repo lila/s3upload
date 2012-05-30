@@ -46,7 +46,7 @@ public class App
         System.out.println("app <s3-path> <local-file> <numthreads>");
     }
     
-    public static Boolean validateS3Url(String s3url) {
+    public static boolean validateS3Url(String s3url) {
         return s3url.matches("s3://.*");
     }
     
@@ -73,7 +73,7 @@ public class App
         return null;
     }
     
-    public static Boolean validateFile(String filePath) {
+    public static boolean validateFile(String filePath) {
         return true;
     }
 
@@ -85,8 +85,8 @@ public class App
         }
         String downloadS3Url      = args[0];
         String filePath           = args[1];
-        int numThreads            = new Integer(args[2]);
-        long uploadPartSize       = new Long(args[3]); 
+        int numThreads            = Integer.parseInt(args[2]);
+        long uploadPartSize       = Long.parseLong(args[3]); 
         
         if (!validateS3Url(downloadS3Url)) {
             printUsage();
@@ -110,6 +110,7 @@ public class App
             InputStream i = App.class.getResourceAsStream("/AwsCredentials.properties");
             tm = new TransferManager(new AmazonS3Client(new PropertiesCredentials(i)), createDefaultExecutorService(numThreads));
             tm.setConfiguration(tmc);
+
         } catch (IOException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
